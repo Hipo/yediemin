@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "yediemin"
+version = "0.1.0"
+description = "Bulletproof attachment serving for Django."
+authors = ["Efe Öge <efe@hipolabs.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/hipo/yediemin"
+repository = "https://github.com/hipo/yediemin"
+keywords = ["python", "django", "django rest framework", "file", "attachment"]
+classifiers = [
+    "Framework :: Django",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: Apache Software License",
+    'Topic :: Internet :: WWW/HTTP',
+    'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+]
+
+[tool.poetry.dependencies]
+python = "^2.7"
+Django = { version = ">=1.8"}
+djangorestframework = { version = ">=3.0"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
