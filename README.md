@@ -64,3 +64,14 @@ class AttachmentSerializer(serializers.ModelSerializer):
 
 AWS_QUERYSTRING_AUTH = True
 ```
+
+### Settings
+
+- `YEDIEMIN_HIDDEN_REDIRECT_PATH`
+
+Default: `yediemin-files`.
+It should be same with location in nginx configuration.
+
+- `YEDIEMIN_AUTHENTICATION_CLASS`
+
+Default: `rest_framework.authentication.SessionAuthentication`

@@ -1,16 +1,15 @@
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
 from django.core import signing
 
-from yediemin.settings import HIDDEN_REDIRECT_PATH
+from yediemin.settings import HIDDEN_REDIRECT_PATH, AUTHENTICATION_CLASS
 
 
 class YedieminView(GenericAPIView):
     permission_classes = []
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [AUTHENTICATION_CLASS]
 
     def get(self, request, *args, **kwargs):
         key = request.query_params.get("key", "")
