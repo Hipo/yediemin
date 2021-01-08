@@ -57,13 +57,7 @@ class AttachmentSerializer(serializers.ModelSerializer):
         )
 ```
 
-5) Upload files to S3 as private. Yediemin requires [presigned object url](https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html).
-
-```python
-# settings.py
-
-AWS_QUERYSTRING_AUTH = True
-```
+5) Upload files to S3 with `YedieminFileField`. Yediemin requires [presigned object url](https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html).
 
 ### Settings
 
@@ -75,3 +69,7 @@ It should be same with location in nginx configuration.
 - `YEDIEMIN_AUTHENTICATION_CLASS`
 
 Default: `rest_framework.authentication.SessionAuthentication`
+
+- `YEDIEMIN_EXPIRE_IN`
+
+Default: `2592000` seconds which is 1 month.
