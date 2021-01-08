@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yediemin"
-version = "0.1.1"
+version = "0.1.2"
 description = "Bulletproof attachment serving for Django Rest Framework."
 authors = ["Efe Öge <efe@hipolabs.com>"]
 license = "MIT"
@@ -26,7 +26,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^2.7"
+python = ">=3.4, <4"
 Django = { version = ">=1.8"}
 djangorestframework = { version = ">=3.0"}
 django-storages = { version = ">=1.11"}
