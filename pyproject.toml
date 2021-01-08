@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "yediemin"
-version = "0.1.0"
-description = "Bulletproof attachment serving for Django."
+version = "0.1.1"
+description = "Bulletproof attachment serving for Django Rest Framework."
 authors = ["Efe Öge <efe@hipolabs.com>"]
 license = "MIT"
 readme = "README.md"

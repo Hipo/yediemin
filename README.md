@@ -12,7 +12,7 @@ A package for bulletproof attachment serving in Django Rest Framework.
 
 ### Installation Steps
 
-1) Install package from pypi.
+1) Install package from [PyPi](https://pypi.org/project/yediemin/).
 
 ```sh
 pip install yediemin
