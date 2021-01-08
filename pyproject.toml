@@ -29,6 +29,7 @@ classifiers = [
 python = "^2.7"
 Django = { version = ">=1.8"}
 djangorestframework = { version = ">=3.0"}
+django-storages = { version = ">=1.11"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"

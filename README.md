@@ -1,22 +1,22 @@
 # Yediemin
 
-A package for bulletproof attachment serving in Django, Django Rest Framework.
+A package for bulletproof attachment serving in Django Rest Framework.
 
 ## Getting Started
 
 ### Requirements
 - Nginx
 - Django Rest Framework
-- Session Authentication.
-- Django Storages
-
-
+- Session Authentication
+- Django Storages (S3)
 
 ### Installation Steps
 
-1) Install package.
+1) Install package from pypi.
 
-> pip install yediemin
+``sh
+pip install yediemin
+```
 
 2) Add the view to `urls.py`
 
@@ -41,12 +41,26 @@ location /yediemin-files/ {
 }
 ```
 
-4) Use `YedieminFileField` in serializer for `FileField`.
+4) Use ``YedieminFileField`` in serializer for `FileField`.
 
 ```python
-from yediemin import YedieminView
+from yediemin import YedieminFileField
 
-urlpatterns = [
-    re_path(r'^yediemin/(?P<file_name>\S+)/$', YedieminView.as_view(), name='yediemin'),
-]
+class AttachmentSerializer(serializers.ModelSerializer):
+    file = YedieminFileField()
+
+    class Meta:
+        model = Attachment
+        fields = (
+            "id",
+            "file",
+        )
+```
+
+5) Upload files to S3 as private. Yediemin requires [presigned object url](https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html).
+
+```python
+# settings.py
+
+AWS_QUERYSTRING_AUTH = True
 ```
