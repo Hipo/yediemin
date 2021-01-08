@@ -14,7 +14,7 @@ A package for bulletproof attachment serving in Django Rest Framework.
 
 1) Install package from pypi.
 
-``sh
+```sh
 pip install yediemin
 ```
 
