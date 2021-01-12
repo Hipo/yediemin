@@ -5,15 +5,8 @@ from django.core import signing
 
 from rest_framework.fields import FileField
 
-from yediemin.storages import PrivateS3Boto3Storage
-
 
 class YedieminFieldMixin:
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.storage = PrivateS3Boto3Storage
 
     def to_representation(self, value):
         file_url = super().to_representation(value)

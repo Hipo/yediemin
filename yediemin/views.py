@@ -1,23 +1,31 @@
+from django.core.signing import BadSignature, SignatureExpired
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
 from django.core import signing
 
-from yediemin.settings import HIDDEN_REDIRECT_PATH, AUTHENTICATION_CLASS
+from yediemin.settings import AUTHENTICATION_CLASSES, HIDDEN_REDIRECT_PATH
 
 
 class YedieminView(GenericAPIView):
     permission_classes = []
-    authentication_classes = [AUTHENTICATION_CLASS]
+    authentication_classes = AUTHENTICATION_CLASSES
 
     def get(self, request, *args, **kwargs):
-        key = request.query_params.get("key", "")
+        try:
+            key = request.query_params.get("key", "")
+        except (BadSignature, SignatureExpired) as exc:
+            raise PermissionDenied()
+
         values_in_key = signing.loads(key)
 
-        file_name_in_key = values_in_key["file_name"]
-        file_url_in_key = values_in_key["file_url"]
-        user_id_in_key = values_in_key["user_id"]
+        try:
+            file_name_in_key = values_in_key["file_name"]
+            file_url_in_key = values_in_key["file_url"]
+            user_id_in_key = values_in_key["user_id"]
+        except AttributeError:
+            raise PermissionDenied()
 
         if file_name_in_key != kwargs.get("file_name"):
             raise PermissionDenied()

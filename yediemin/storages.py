@@ -4,12 +4,6 @@ from yediemin.settings import EXPIRE_IN
 
 
 class PrivateS3Boto3Storage(S3Boto3Storage):
-
-    def get_default_settings(self):
-        settings = super().get_default_settings()
-
-        settings["default_acl"] = "private"
-        settings["querystring_auth"] = True
-        settings["querystring_expire"] = EXPIRE_IN
-
-        return settings
+    default_acl = "private"
+    querystring_auth = True
+    querystring_expire = EXPIRE_IN

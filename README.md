@@ -41,7 +41,7 @@ location /yediemin-files/ {
 }
 ```
 
-4) Use ``YedieminFileField`` in serializer for `FileField`.
+4) Use `YedieminFileField` in serializer for `FileField`.
 
 ```python
 from yediemin import YedieminFileField
@@ -57,7 +57,16 @@ class AttachmentSerializer(serializers.ModelSerializer):
         )
 ```
 
-5) Upload files to S3 with `YedieminFileField`. Yediemin requires [presigned object url](https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html).
+5) Use `PrivateS3Boto3Storage` for the field in `models.py`
+
+```python
+from yediemin import PrivateS3Boto3Storage
+
+class Attachment(models.Model):
+    file = models.FileField(storage=PrivateS3Boto3Storage())
+```
+
+6) Upload files to S3 with `YedieminFileField`. Yediemin requires [presigned object url](https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html).
 
 ### Settings
 
@@ -66,9 +75,9 @@ class AttachmentSerializer(serializers.ModelSerializer):
 Default: `yediemin-files`.
 It should be same with location in nginx configuration.
 
-- `YEDIEMIN_AUTHENTICATION_CLASS`
+- `YEDIEMIN_AUTHENTICATION_CLASSES`
 
-Default: `rest_framework.authentication.SessionAuthentication`
+Default: `[rest_framework.authentication.SessionAuthentication]`
 
 - `YEDIEMIN_EXPIRE_IN`
 
