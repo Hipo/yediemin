@@ -13,12 +13,12 @@ class YedieminView(GenericAPIView):
     authentication_classes = AUTHENTICATION_CLASSES
 
     def get(self, request, *args, **kwargs):
+        key = request.query_params.get("key", "")
+
         try:
-            key = request.query_params.get("key", "")
+            values_in_key = signing.loads(key)
         except (BadSignature, SignatureExpired) as exc:
             raise PermissionDenied()
-
-        values_in_key = signing.loads(key)
 
         try:
             file_name_in_key = values_in_key["file_name"]
