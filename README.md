@@ -68,6 +68,17 @@ class Attachment(models.Model):
 
 6) Upload files to S3 with `YedieminFileField`. Yediemin requires [presigned object url](https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html).
 
+7) Make private already uploaded S3 objects by using [AWS CLI](https://aws.amazon.com/cli/). Change `<bucket-name>` and `<bucket-name>/<path>/<to>/<folder>` with your use-case.
+
+```sh
+# Script is written by 'Varun Chandak' (https://stackoverflow.com/a/48060930)
+
+aws s3 ls --recursive s3://<bucket-name>/<path>/<to>/<folder> | cut -d' ' -f5- | awk '{print $NF}' | while read line; do
+    echo "$line"
+    aws s3api put-object-acl --acl private --bucket <bucket-name> --key "$line"
+done
+```
+
 ### Settings
 
 - `YEDIEMIN_HIDDEN_REDIRECT_PATH`
