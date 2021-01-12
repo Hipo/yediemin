@@ -81,4 +81,4 @@ Default: `[rest_framework.authentication.SessionAuthentication]`
 
 - `YEDIEMIN_EXPIRE_IN`
 
-Default: `2592000` seconds which is 1 month.
+Default: `604800` seconds which is 1 week. This is the maximum limit provided by AWS. [Using Query Parameters](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
