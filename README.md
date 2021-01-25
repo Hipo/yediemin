@@ -71,7 +71,9 @@ class Attachment(models.Model):
 7) Make private already uploaded S3 objects by using [AWS CLI](https://aws.amazon.com/cli/). Change `<bucket-name>` and `<bucket-name>/<path>/<to>/<folder>` with your use-case.
 
 ```sh
-# Script is written by 'Varun Chandak' (https://stackoverflow.com/a/48060930)
+# Script is inspired from 'Varun Chandak' (https://stackoverflow.com/a/48060930).
+
+export AWS_PAGER = "" # https://stackoverflow.com/a/60374670
 
 aws s3 ls --recursive s3://<bucket-name>/<path>/<to>/<folder> | cut -d' ' -f5- | awk '{print $NF}' | while read line; do
     echo "$line"
