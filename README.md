@@ -73,7 +73,7 @@ class Attachment(models.Model):
 ```sh
 # Script is inspired from 'Varun Chandak' (https://stackoverflow.com/a/48060930).
 
-export AWS_PAGER = "" # https://stackoverflow.com/a/60374670
+export AWS_PAGER="" # https://stackoverflow.com/a/60374670
 
 aws s3 ls --recursive s3://<bucket-name>/<path>/<to>/<folder> | cut -d' ' -f5- | awk '{print $NF}' | while read line; do
     echo "$line"
